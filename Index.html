@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prem - Ek Aatma Ka Safar by Lion</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #ff8e8e;
+            --accent-color: #ffb3b3;
+            --light-color: #fff5f5;
+            --dark-color: #4a4a4a;
+            --text-color: #333;
+            --bg-color: #fff;
+            --card-bg: #fff;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --gradient-pink: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            --gradient-violet: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            --gradient-peach: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary-color: #ff8e8e;
+            --secondary-color: #ff6b6b;
+            --accent-color: #ff9a9e;
+            --light-color: #1a1a1a;
+            --dark-color: #f0f0f0;
+            --text-color: #f0f0f0;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --nav-bg: rgba(30, 30, 30, 0.9);
+            --gradient-pink: linear-gradient(135deg, #d47fa6 0%, #a56a89 100%);
+            --gradient-violet: linear-gradient(135deg, #7a5c8d 0%, #a56a89 100%);
+            --gradient-peach: linear-gradient(135deg, #d4a582 0%, #a56a5c 100%);
+            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            box-shadow: var(--shadow-soft);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: var(--nav-bg);
+            padding: 0.5rem 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient-pink);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .creator-credit {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        .creator-credit a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .creator-credit a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        /* Music Toggle */
+        .music-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .music-toggle i {
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        /* Accordion */
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            background: var(--card-bg);
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            background: var(--gradient-peach);
+            color: var(--dark-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: var(--gradient-pink);
+        }
+
+        .accordion-header h3 {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            color: var(--dark-color);
+        }
+
+        .accordion-header i {
+            font-size: 1.2rem;
+            transition: var(--transition);
+            color: var(--dark-color);
+        }
+
+        .accordion-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: var(--card-bg);
+        }
+
+        .accordion-content.show {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .accordion-content p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        /* Psychological Highlight Box */
+        .psychology-tip {
+            background: rgba(255, 182, 193, 0.2);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .psychology-tip h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .psychology-tip h4 i {
+            margin-right: 0.5rem;
+        }
+
+        /* Parallax Section */
+        .parallax {
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') fixed center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            margin: 4rem 0;
+        }
+
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .parallax-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .parallax-content p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-violet);
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .social-links li {
+            margin: 0 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--nav-bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .parallax-content h2 {
+                font-size: 2rem;
+            }
+
+            .parallax-content p {
+                font-size: 1rem;
+            }
+
+            .theme-toggle, .music-toggle {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+            }
+
+            .theme-toggle {
+                bottom: 90px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .accordion-header h3 {
+                font-size: 1rem;
+            }
+
+            .creator-credit {
+                font-size: 0.7rem;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Prem</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#questions">Questions</a></li>
+                <li><a href="#wisdom">Wisdom</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Prem - Ek Aatma Ka Safar</h1>
+            <p class="animate__animated animate__fadeInUp">"Prem mein na koi shabd hote hain, na hi koi seema... bas ek ankahi kahani hoti hai"</p>
+        </div>
+        <div class="creator-credit">
+            Created with ❤️ by <a href="https://www.instagram.com/lionxlover" target="_blank">Lion</a> | Telegram: <a href="https://t.me/yamimugen" target="_blank">@yamimugen</a>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Music Toggle -->
+    <div class="music-toggle">
+        <i class="fas fa-music"></i>
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- About Section -->
+    <section class="container" id="about">
+        <div class="section-title">
+            <h2>Prem Kya Hai?</h2>
+        </div>
+        <div class="about-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Prem sirf ek ehsaas nahi, ek poora sansaar hai. Yeh woh anmol rishta hai jo dil se nikalkar dil tak pahunchta hai. Prem mein na koi shartein hoti hain, na hi koi apeksha... bas ek sacchai hoti hai.
+            </p>
+            
+            <div class="psychology-tip">
+                <h4><i class="fas fa-brain"></i> Psychological Insight</h4>
+                <p>Research shows that love activates the same brain regions as cocaine, creating feelings of euphoria. True love (prem) goes beyond this initial high to create deep, lasting bonds through oxytocin and vasopressin release.</p>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+                <div style="background: var(--gradient-pink); padding: 2rem; border-radius: 10px; width: 200px; box-shadow: var(--shadow-soft); animation: pulse 4s infinite;">
+                    <i class="fas fa-heart" style="font-size: 2rem; margin-bottom: 1rem; color: #fff;"></i>
+                    <h3 style="color: #fff;">Samarpan</h3>
+                </div>
+                <div style="background: var(--gradient-violet); padding: 2rem; border-radius: 10px; width: 200px; box-shadow: var(--shadow-soft); animation: pulse 4s infinite 1s;">
+                    <i class="fas fa-infinity" style="font-size: 2rem; margin-bottom: 1rem; color: #fff;"></i>
+                    <h3 style="color: #fff;">Anant</h3>
+                </div>
+                <div style="background: var(--gradient-peach); padding: 2rem; border-radius: 10px; width: 200px; box-shadow: var(--shadow-soft); animation: pulse 4s infinite 2s;">
+                    <i class="fas fa-lotus" style="font-size: 2rem; margin-bottom: 1rem; color: #fff;"></i>
+                    <h3 style="color: #fff;">Shuddhta</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions Section -->
+    <section class="container" id="questions" style="padding: 4rem 2rem;">
+        <div class="section-title">
+            <h2>Prem Par Vichar</h2>
+        </div>
+        <div class="accordion">
+            <!-- Question 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>प्रेम क्या होता है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>kisi ko chahna pyar nhi hota uski care krna prem h</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-heartbeat"></i> Love vs Attachment</h4>
+                        <p>Psychology distinguishes between love (selfless care) and attachment (emotional dependence). True prem is about giving without expectation, while attachment seeks security.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>सच्चे प्रेम की पहचान कैसे करें?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>jo aapse koi aashanka nhi krta aapse kuch nhi mangta vahi sachha prem h</p>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>एकतरफा प्रेम क्या होता है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>jese bhakt or bhagwan ka prem</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-hands-helping"></i> Unrequited Love</h4>
+                        <p>Studies show unrequited love activates brain regions associated with motivation and reward, explaining its persistence. Bhakti (devotion) transforms this into spiritual energy.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>प्रेम और आकर्षण में क्या अंतर है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>prem me hm samarpan krte h or aakarshan me abhilasha rakhte h ya fir kisi cheej ki kamna krte h kuch maangte h</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-fire"></i> Chemistry vs Commitment</h4>
+                        <p>Attraction is dopamine-driven (excitement), while love is oxytocin-driven (bonding). Prem combines both with the depth of spiritual connection.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>टूटे दिल को कैसे संभालें?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>dil kabhi nhi tut-ta jha dil tute vha moh h prem nhi</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-heart-broken"></i> Healing Heartbreak</h4>
+                        <p>Research suggests heartbreak activates the same brain regions as physical pain. Mindfulness and self-compassion are scientifically proven healing methods.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>क्या सच्चा प्रेम उम्र, रूप या समय की सीमाओं को मानता है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>nhi aatm prem me ye sb sirf sansarik h</p>
+                </div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>क्या एकतरफा प्रेम भी सच्चा प्रेम हो सकता है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>ha</p>
+                </div>
+            </div>
+            
+            <!-- Question 8 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>जब हम किसी से प्रेम करते हैं, तो क्या हमें उसकी खुशी को अपनी खुशी से ऊपर रखना चाहिए?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>ha bilkul</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-balance-scale"></i> Healthy Boundaries</h4>
+                        <p>While selflessness is noble, psychologists emphasize maintaining healthy boundaries. True prem balances care for others with self-respect.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 9 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>क्या प्रेम में त्याग ज़रूरी है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>nhi prem me samarpan hota h tyag nhi kisi ek ki khushiyo ke liye dusro ko dukh dena prem nhi h</p>
+                </div>
+            </div>
+            
+            <!-- Question 10 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>क्या दो लोग जो एक-दूसरे से सच्चा प्रेम करते हैं, हमेशा साथ रहते हैं?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>ye hamesha sambhav nhi h</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-clock"></i> Eternal Connection</h4>
+                        <p>Psychological studies show that meaningful connections continue to influence us neurologically even after separation, explaining prem's timeless nature.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="parallax" id="wisdom">
+        <div class="parallax-content">
+            <h2>"Prem Ek Aisi Ganga Hai"</h2>
+            <p>Jisme dubo kar har koi pavitra ho jata hai... Na koi jaati, na koi dharm, na koi bhedbhav... Bas ek anmol rishta</p>
+        </div>
+    </section>
+
+    <!-- More Questions Section -->
+    <section class="container">
+        <div class="accordion">
+            <!-- Question 11 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>अगर प्रेम सच में सच्चा है, तो वह क्यों टूट जाता है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>sachha prem kabhi nhi toot-ta</p>
+                </div>
+            </div>
+            
+            <!-- Question 12 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>क्या किसी को भूलना भी प्रेम का हिस्सा होता है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>nhi</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-memory"></i> Memory and Love</h4>
+                        <p>Neuroscience shows love creates lasting neural pathways. True prem becomes part of our psychological fabric rather than something to forget.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 13 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>क्या हम सच में एक ही बार सच्चा प्रेम कर सकते हैं?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>ha agr baat pritam ki ho to 1 hi baar anyatha nhi ham bhut jeevo se pyar kr sakte h</p>
+                </div>
+            </div>
+            
+            <!-- Question 14 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>जिसे हम सबसे ज़्यादा चाहते हैं, वही सबसे दूर क्यों चला जाता है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>prem me chahte nhi samarpan krte h</p>
+                </div>
+            </div>
+            
+            <!-- Question 15 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>क्या बिना कहे समझ जाना ही सच्चा प्रेम है?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>haa</p>
+                    <div class="psychology-tip">
+                        <h4><i class="fas fa-brain"></i> Nonverbal Communication</h4>
+                        <p>Studies show couples in love develop "limbic resonance" - their nervous systems synchronize, enabling wordless understanding characteristic of true prem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h2>"Prem Ki Gehrai Ko Shabd Nahin, Ehsaas Se Samjha Ja Sakta Hai"</h2>
+            <p>Hamse jude rahein aur prem ki is yatra mein saath dein</p>
+            <ul class="social-links">
+                <li><a href="https://www.instagram.com/lionxlover" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://t.me/yamimugen" target="_blank"><i class="fab fa-telegram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+            </ul>
+            <p class="copyright">© 2023 Prem - Ek Aatma Ka Safar. Created by Lion. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Accordion Functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const accordionItem = this.parentElement;
+                const accordionContent = this.nextElementSibling;
+                
+                // Close all other accordion items
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    if (item !== accordionItem) {
+                        item.querySelector('.accordion-header').classList.remove('active');
+                        item.querySelector('.accordion-content').classList.remove('show');
+                    }
+                });
+                
+                // Toggle current accordion item
+                this.classList.toggle('active');
+                accordionContent.classList.toggle('show');
+            });
+        });
+
+        // Scroll Down Button
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            document.querySelector('#about').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Music Toggle
+        const musicToggle = document.querySelector('.music-toggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                bgMusic.play();
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Dark/Light Mode Toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        let isDarkMode = false;
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            enableDarkMode();
+        } else if (localStorage.getItem('theme') === 'light') {
+            enableLightMode();
+        }
+
+        themeToggle.addEventListener('click', function() {
+            if (isDarkMode) {
+                enableLightMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+
+        function enableDarkMode() {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            isDarkMode = true;
+            localStorage.setItem('theme', 'dark');
+        }
+
+        function enableLightMode() {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            isDarkMode = false;
+            localStorage.setItem('theme', 'light');
+        }
+
+        // Animation on Scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.accordion-item, .section-title, .psychology-tip');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial styles for animation
+        document.querySelectorAll('.accordion-item, .section-title, .psychology-tip').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
